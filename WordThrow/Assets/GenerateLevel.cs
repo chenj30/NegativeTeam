@@ -6,6 +6,9 @@ public class GenerateLevel : MonoBehaviour {
 
 	List<string> NegativeWords;
 	List<string> PositiveWords;
+	float positivity;
+	int positive_words;
+	int negative_words;
 
 
 	// Use this for initialization
@@ -28,6 +31,9 @@ public class GenerateLevel : MonoBehaviour {
 			"Popular", "Positive", "Pretty", "Productive", "Progress", "Proud", "Quality", "Refreshing", "Reliable", "Remarkable", "Respect", "Reward", 
 			"Right", "Safe", "Satisfying", "Skilled", "Smile", "Special", "Spirited", "Stupendous", "Successful", "Sunny", "Super", "Supportive", 
 			"Terrific", "Tranquility", "Trust", "Truth", "Upbeat", "Value", "Vibrant", "Victory", "Vitality", "Wealth", "Wonderful"};
+		positivity = 0.0;
+		positive_words = 0;
+		negative_words = 0;
 	}
 	
 	// Update is called once per frame
@@ -38,5 +44,18 @@ public class GenerateLevel : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.N)) {
 			Debug.Log(NegativeWords[Random.Range(0, PositiveWords.Count - 1)]);
 		}
+	}
+
+	public void WordHit(bool positive){
+		if (positive) {
+			positive_words++;
+		} else {
+			negative_words++;
+		}
+		positivity = positive_words / (positive_words + negative_words);
+	}
+
+	public float GetPositivity(){
+		return positivity;
 	}
 }
