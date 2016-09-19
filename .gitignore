@@ -1,5 +1,5 @@
 WordThrow/[Ll]ibrary/
-WordThrow/Library/
+/[Li]brary/
 WordThrow/[Tt]emp/
 WordThrow/[Oo]bj/
 WordThrow/[Bb]uild/
@@ -28,3 +28,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+WordThrow/Library/
