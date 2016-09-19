@@ -31,7 +31,7 @@ public class GenerateLevel : MonoBehaviour {
 			"Popular", "Positive", "Pretty", "Productive", "Progress", "Proud", "Quality", "Refreshing", "Reliable", "Remarkable", "Respect", "Reward", 
 			"Right", "Safe", "Satisfying", "Skilled", "Smile", "Special", "Spirited", "Stupendous", "Successful", "Sunny", "Super", "Supportive", 
 			"Terrific", "Tranquility", "Trust", "Truth", "Upbeat", "Value", "Vibrant", "Victory", "Vitality", "Wealth", "Wonderful"};
-		positivity = 0.0;
+		positivity = 0.0f;
 		positive_words = 0;
 		negative_words = 0;
 	}
