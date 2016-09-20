@@ -17,4 +17,17 @@ public class setLightByNegativity : MonoBehaviour {
 	void Update () {
 		GetComponent<Light> ().color = Color.Lerp (positive_color, negative_color, negativity);
 	}
+
+	IEnumerator ChangeLighting(){
+		yield return new WaitForSeconds (5f);
+		negativity = FindObjectOfType<GenerateLevel> ().GetPositivity();
+		float timer = 3f;
+		while (timer > 0) {
+			timer -= Time.deltaTime;
+			float percentage = timer / 3f;
+			//LERP The Lighting.
+			yield return new WaitForEndOfFrame();
+		}
+		StartCoroutine ("ChangeLighting");
+	}
 }
