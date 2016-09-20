@@ -17,6 +17,7 @@ public class spawnWords : MonoBehaviour {
 			Vector3 offset = new Vector3 (Random.Range (-11f, 11f), Random.Range (-5, 5f), Random.Range (-3.25f, 3.25f));
 			w.GetComponent<WordBehavior> ().position = offset + transform.position;
 			w.GetComponent<WordBehavior> ().word = "wow";
+			w.transform.parent = gameObject.transform;
 			//FIX ROTATION SOMEHOW
 		}
 	}
