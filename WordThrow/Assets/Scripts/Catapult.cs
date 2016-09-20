@@ -4,21 +4,26 @@ using UnityEngine.UI;
 
 public class Catapult : MonoBehaviour {
 
+	[Header("Required Components")]
 	public Rigidbody projectile;
 	public Transform catapult;
 	public Image crosshair;
+	//public AudioClip chargeSound;
+	public AudioClip launchSound;
+	[Header("Testing values")]
 	public float baseForce = 800;
 	public float maxForce = 10000;
 	public float timeToMax = 1;
 	public float moveSpeed = 10;
 	public float distance = 15;
 
+	private AudioSource _audioSource;
 	private float _timePressed;
 	private float _timeReleased;
 	private float _force;
 
 	void Start () {
-		
+		_audioSource = gameObject.GetComponent<AudioSource>();
 	}
 	
 	void Update () {
@@ -33,12 +38,15 @@ public class Catapult : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown(0))
 		{
+			//_audioSource.PlayOneShot(chargeSound);
 			/* Record when mouse button clicked */
 			_timePressed = Time.time;
 		}
 
+
 		if (Input.GetMouseButtonUp(0))
 		{
+			_audioSource.PlayOneShot(launchSound);
 			/* Record when mouse button released */
 			_timeReleased = Time.time;
 			/* Focus the catapult on the mouse position */
