@@ -13,7 +13,8 @@ public class spawnWords : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.U)) {
-			GameObject w = (GameObject) Instantiate (word, transform.position, Quaternion.Euler(new Vector3(0,255,0)));
+			//GameObject w = (GameObject) Instantiate (word, transform.position, Quaternion.Euler(new Vector3(0,0, 255)));
+			GameObject w = (GameObject)Instantiate(word, transform.position, transform.rotation);
 			Vector3 offset = new Vector3 (Random.Range (-11f, 11f), Random.Range (-5, 5f), Random.Range (-3.25f, 3.25f));
 			w.GetComponent<WordBehavior> ().position = offset + transform.position;
 			w.GetComponent<WordBehavior> ().word = "wow";
