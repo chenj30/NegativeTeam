@@ -14,10 +14,11 @@ public class spawnWords : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.U)) {
 			//GameObject w = (GameObject) Instantiate (word, transform.position, Quaternion.Euler(new Vector3(0,0, 255)));
-			GameObject w = (GameObject)Instantiate(word, transform.position, transform.rotation);
-			Vector3 offset = new Vector3 (Random.Range (-11f, 11f), Random.Range (-5, 5f), Random.Range (-3.25f, 3.25f));
+			GameObject w = (GameObject)Instantiate(word, this.transform.position, this.transform.rotation);
+			BoxCollider bc = gameObject.GetComponent<BoxCollider>();
+			Vector3 offset = new Vector3(Random.Range(-bc.size.z / 2, bc.size.z / 2), Random.Range(-bc.size.y / 2, bc.size.y / 2), Random.Range(-bc.size.x / 2, bc.size.x / 2));
 			w.GetComponent<WordBehavior> ().position = offset + transform.position;
-			w.GetComponent<WordBehavior> ().word = "wow";
+			w.GetComponent<WordBehavior> ().word = "Kev";
 			w.transform.parent = gameObject.transform;
 			//FIX ROTATION SOMEHOW
 		}

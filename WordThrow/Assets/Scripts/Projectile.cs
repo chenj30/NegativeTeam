@@ -12,4 +12,9 @@ public class Projectile : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		Destroy(gameObject);
+	}
 }

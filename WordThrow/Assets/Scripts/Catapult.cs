@@ -14,7 +14,6 @@ public class Catapult : MonoBehaviour {
 	public float baseForce = 800;
 	public float maxForce = 10000;
 	public float timeToMax = 1;
-	public float moveSpeed = 10;
 	public float distance = 15;
 
 	private AudioSource _audioSource;
@@ -27,12 +26,8 @@ public class Catapult : MonoBehaviour {
 	}
 	
 	void Update () {
-		/* Calculate position based on input, then translate the transform */
-		float x = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-		float y = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
-		transform.Translate(new Vector3(x, y, 0));
 		/* Get mouse position in world space */
-		Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100));
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
 		/* Set the position of the crosshair to the mouse position */
 		crosshair.transform.position = mousePos;
 

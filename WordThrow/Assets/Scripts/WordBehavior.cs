@@ -13,7 +13,7 @@ public class WordBehavior : MonoBehaviour {
 		//first we have to build a word and surround it with a collider
 		float width = 0;
 		foreach (char letter in word) {
-			Vector3 location = new Vector3 (transform.position.x + width, transform.position.y, transform.position.z);
+			Vector3 location = new Vector3 (transform.position.x, transform.position.y, transform.position.z+width);
 			GameObject l = (GameObject) Instantiate (Resources.Load ("LetterPrefabs/" + letter),location,Quaternion.identity);
 			l.transform.parent = transform;
 			width += l.GetComponent<MeshRenderer> ().bounds.size.x;
@@ -48,6 +48,7 @@ public class WordBehavior : MonoBehaviour {
 			letter.velocity = new Vector3 (Random.onUnitSphere.x * 10, 
 				Random.onUnitSphere.y * 10,
 				Random.onUnitSphere.z * 10);
+			letter.GetComponent<BoxCollider>().enabled = false;
 			fadeout = .01f;
 		}
 	}
