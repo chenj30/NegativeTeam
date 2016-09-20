@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: h
+    100004: letter:h
     400000: //RootNode
     400002: h
+    400004: letter:h
     2300000: h
+    2300002: letter:h
     3300000: h
+    3300002: letter:h
     4300000: h
+    4300002: letter:h
     9500000: //RootNode
   materials:
     importMaterials: 1
