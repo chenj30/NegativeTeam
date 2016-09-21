@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour {
 
@@ -10,9 +11,9 @@ public class Timer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		game_time -= Time.deltaTime;
-		text.text = game_time.ToString("F2") + "s";
+		text.text = ((int)game_time).ToString() + "s";
 		if (game_time <= 0) {
-			//Load endgame screen.
+			SceneManager.LoadScene("End Scene");
 		}
 	}
 }

@@ -8,7 +8,6 @@ public class Catapult : MonoBehaviour {
 	public Rigidbody projectile;
 	public Transform catapult;
 	public Image crosshair;
-	//public AudioClip chargeSound;
 	public AudioClip launchSound;
 	[Header("Testing values")]
 	public float baseForce = 800;
@@ -27,13 +26,12 @@ public class Catapult : MonoBehaviour {
 	
 	void Update () {
 		/* Get mouse position in world space */
-		Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
 		/* Set the position of the crosshair to the mouse position */
 		crosshair.transform.position = mousePos;
 
 		if (Input.GetMouseButtonDown(0))
 		{
-			//_audioSource.PlayOneShot(chargeSound);
 			/* Record when mouse button clicked */
 			_timePressed = Time.time;
 		}

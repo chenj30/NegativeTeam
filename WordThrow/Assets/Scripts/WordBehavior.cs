@@ -4,26 +4,31 @@ using System.Collections;
 public class WordBehavior : MonoBehaviour {
 	public string word = "excellent";
 	public Vector3 position;
+	public bool positive = false;
 
 	//fadeout
 	float fadeout = -1;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		//first we have to build a word and surround it with a collider
 		float width = 0;
-		foreach (char letter in word) {
-			Vector3 location = new Vector3 (transform.position.x, transform.position.y, transform.position.z+width);
-			GameObject l = (GameObject) Instantiate (Resources.Load ("LetterPrefabs/" + letter),location,Quaternion.identity);
+		foreach (char letter in word)
+		{
+			Vector3 location = new Vector3(transform.position.x, transform.position.y, transform.position.z + width);
+			GameObject l = (GameObject)Instantiate(Resources.Load("LetterPrefabs/" + letter), location, transform.rotation);
+			l.transform.Rotate(new Vector3(0, 180, 0));
 			l.transform.parent = transform;
-			width += l.GetComponent<MeshRenderer> ().bounds.size.x;
+			width += l.GetComponent<MeshRenderer>().bounds.size.x * 3 + 1;
 		}
-		/*Vector3 old_size = GetComponent<BoxCollider> ().size;
-		GetComponent<BoxCollider> ().size = new Vector3 (width, old_size.y, old_size.z);
-		GetComponent<BoxCollider> ().center = new Vector3 (transform.position.x + width / 2 - old_size.x/2, transform.position.y, transform.position.z);*/
-		//now we can move it wherever we want
 		transform.position = position;
-		//print ("setting position to " + position);
+		float duration = gameObject.GetComponentInParent<spawnWords>().timePerSpawn;
+		foreach (Rigidbody letter in GetComponentsInChildren<Rigidbody>())
+		{
+			Destroy(letter, duration);
+		}
+		Destroy(gameObject, duration);
 	}
 	
 	// Update is called once per frame

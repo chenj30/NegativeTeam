@@ -6,10 +6,10 @@ public class GenerateLevel : MonoBehaviour {
 
 	List<string> NegativeWords;
 	List<string> PositiveWords;
-	float positivity;
+	float negativity;
 	int positive_words;
 	int negative_words;
-
+	int total_words;
 
 	// Use this for initialization
 	void Start () {
@@ -31,9 +31,10 @@ public class GenerateLevel : MonoBehaviour {
 			"Popular", "Positive", "Pretty", "Productive", "Progress", "Proud", "Quality", "Refreshing", "Reliable", "Remarkable", "Respect", "Reward", 
 			"Right", "Safe", "Satisfying", "Skilled", "Smile", "Special", "Spirited", "Stupendous", "Successful", "Sunny", "Super", "Supportive", 
 			"Terrific", "Tranquility", "Trust", "Truth", "Upbeat", "Value", "Vibrant", "Victory", "Vitality", "Wealth", "Wonderful"};
-		positivity = 0.0f;
+		negativity = 0.5f;
 		positive_words = 0;
 		negative_words = 0;
+		total_words = 0;
 	}
 	
 	// Update is called once per frame
@@ -52,10 +53,37 @@ public class GenerateLevel : MonoBehaviour {
 		} else {
 			negative_words++;
 		}
-		positivity = positive_words / (positive_words + negative_words);
+		negativity = 0.5f + 0.05f * negative_words - 0.05f * positive_words;
+		Debug.Log( negativity);
 	}
 
-	public float GetPositivity(){
-		return positivity;
+	public float GetNegativity(){
+		Debug.Log(negativity);
+		return negativity;
 	}
+
+	public bool PosOrNeg()
+	{
+		int chance = Random.Range(0, 10);
+		if (chance % 2 == 0) { return true; }
+		else { return false; }
+	}
+
+	public string GetRandomWord(bool positive)
+	{
+		string word = "";
+		if (positive)
+		{
+			word = PositiveWords[Random.Range(0, PositiveWords.Count - 1)];
+			PositiveWords.Remove(word);
+		}
+		else
+		{
+			word = NegativeWords[Random.Range(0, NegativeWords.Count - 1)];
+			NegativeWords.Remove(word);
+		}
+		total_words++;
+		return word;
+	}
+
 }

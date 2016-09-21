@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class setLightByNegativity : MonoBehaviour {
+
+	public GameObject wordManager;
+
 	[Range(0.0f,1.0f)]
 	public float negativity = .5f;
 	public Color positive_color;
@@ -20,7 +23,7 @@ public class setLightByNegativity : MonoBehaviour {
 
 	IEnumerator ChangeLighting(){
 		yield return new WaitForSeconds (5f);
-		negativity = FindObjectOfType<GenerateLevel> ().GetPositivity();
+		negativity = wordManager.GetComponent<GenerateLevel>().GetNegativity();
 		float timer = 3f;
 		while (timer > 0) {
 			timer -= Time.deltaTime;
