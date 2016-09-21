@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class WordBehavior : MonoBehaviour {
+	public GenerateLevel wordManager;
 	public string word = "excellent";
 	public Vector3 position;
 	public bool positive = false;
@@ -56,5 +57,6 @@ public class WordBehavior : MonoBehaviour {
 			letter.GetComponent<BoxCollider>().enabled = false;
 			fadeout = .01f;
 		}
+		wordManager.WordHit(positive);
 	}
 }

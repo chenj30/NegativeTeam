@@ -19,6 +19,7 @@ public class spawnWords : MonoBehaviour {
 			BoxCollider bc = gameObject.GetComponent<BoxCollider>();
 			Vector3 offset = new Vector3(Random.Range(-bc.size.z / 2, bc.size.z / 2), Random.Range(-bc.size.y / 2, bc.size.y / 2), Random.Range(-bc.size.x / 2, bc.size.x / 2));
 			w.GetComponent<WordBehavior> ().position = offset + transform.position;
+			w.GetComponent<WordBehavior>().wordManager = gameObject.GetComponent<GenerateLevel>();
 			w.GetComponent<WordBehavior> ().positive = gameObject.GetComponent<GenerateLevel>().PosOrNeg();
 			w.GetComponent<WordBehavior> ().word = gameObject.GetComponent<GenerateLevel>().GetRandomWord(w.GetComponent<WordBehavior>().positive);
 			w.transform.parent = gameObject.transform;
