@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 		_audioSource.PlayOneShot(impact);
+		gameObject.GetComponent<SphereCollider>().enabled = false;
 		Destroy(gameObject, 1f);
 	}
 }
