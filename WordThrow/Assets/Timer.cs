@@ -13,7 +13,8 @@ public class Timer : MonoBehaviour {
 		game_time -= Time.deltaTime;
 		text.text = ((int)game_time).ToString() + "s";
 		if (game_time <= 0) {
-			SceneManager.LoadScene("End Scene");
+			GameObject.Find ("Main Camera").transform.position = GameObject.Find ("End Camera Position").transform.position;
+			GameObject.Find ("Main Camera").transform.rotation = GameObject.Find ("End Camera Position").transform.rotation;
 		}
 	}
 }

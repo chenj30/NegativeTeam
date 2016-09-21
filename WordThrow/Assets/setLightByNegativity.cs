@@ -4,9 +4,7 @@ using System.Collections;
 public class setLightByNegativity : MonoBehaviour {
 
 	public GameObject wordManager;
-
-	[Range(0.0f,1.0f)]
-	public float negativity = .5f;
+	public float negativity;
 	public Color positive_color;
 	public Color negative_color;
 
@@ -14,18 +12,20 @@ public class setLightByNegativity : MonoBehaviour {
 	void Start () {
 		positive_color = new Color (255.0f/255, 242.0f/255, 208.0f/255);
 		negative_color = new Color (200.0f/255, 150.0f/255, 200.0f/255);
-		StartCoroutine ("ChangeLighting");
+		//StartCoroutine ("ChangeLighting");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.R)) {
-			negativity += 0.1f;
-		} else if (Input.GetKeyDown (KeyCode.T)) {
-			negativity -= 0.1f;
-		}
-		//GetComponent<Light> ().color = Color.Lerp (positive_color, negative_color, negativity);
+		negativity = wordManager.GetComponent<GenerateLevel> ().GetNegativity ();
+		if (Input.GetKey (KeyCode.R))
+			negativity = 0;
+		if (Input.GetKey (KeyCode.T))
+			negativity = 1;
+		GetComponent<Light> ().color = Color.Lerp (positive_color, negative_color, negativity);
+		GameObject.Find ("boncelit").GetComponent<Light> ().intensity = 1.0f - negativity;
 	}
+		
 
 	IEnumerator ChangeLighting(){
 		yield return new WaitForSeconds (5f);
