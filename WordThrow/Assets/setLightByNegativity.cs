@@ -18,10 +18,13 @@ public class setLightByNegativity : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		negativity = wordManager.GetComponent<GenerateLevel> ().GetNegativity ();
+		/*
 		if (Input.GetKey (KeyCode.R))
 			negativity = 0;
 		if (Input.GetKey (KeyCode.T))
 			negativity = 1;
+		*/
+		//comment these two lines to stop light changes
 		GetComponent<Light> ().color = Color.Lerp (positive_color, negative_color, negativity);
 		GameObject.Find ("boncelit").GetComponent<Light> ().intensity = 1.0f - negativity;
 	}
