@@ -54,6 +54,7 @@ public class GenerateLevel : MonoBehaviour {
 			negative_words++;
 		}
 		negativity = 0.5f + 0.05f * negative_words - 0.05f * positive_words;
+		Debug.Log("Positive words hit: " + positive_words + ", Negative words hit: " + negative_words + ", Hit %: " + ((float)(positive_words + negative_words) / total_words * 100));
 	}
 
 	public float GetNegativity(){

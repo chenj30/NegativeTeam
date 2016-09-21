@@ -7,6 +7,8 @@ public class WordBehavior : MonoBehaviour {
 	public Vector3 position;
 	public bool positive = false;
 
+	bool hit = false;
+
 	//fadeout
 	float fadeout = -1;
 
@@ -24,7 +26,7 @@ public class WordBehavior : MonoBehaviour {
 			width += l.GetComponent<MeshRenderer>().bounds.size.x * 3 + 1;
 		}
 		transform.position = position;
-		float duration = gameObject.GetComponentInParent<spawnWords>().timePerSpawn;
+		float duration = gameObject.GetComponentInParent<spawnWords>().wordDuration;
 		foreach (Rigidbody letter in GetComponentsInChildren<Rigidbody>())
 		{
 			Destroy(letter, duration);
@@ -49,6 +51,11 @@ public class WordBehavior : MonoBehaviour {
 	}
 
 	public void Hit(){
+		if (!hit)
+		{
+			hit = true;
+			wordManager.WordHit(positive);
+		}
 		foreach (Rigidbody letter in GetComponentsInChildren<Rigidbody>()) {
 			letter.isKinematic = false;
 			letter.velocity = new Vector3 (Random.onUnitSphere.x * 10, 
@@ -57,6 +64,5 @@ public class WordBehavior : MonoBehaviour {
 			letter.GetComponent<BoxCollider>().enabled = false;
 			fadeout = .01f;
 		}
-		wordManager.WordHit(positive);
 	}
 }
