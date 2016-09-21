@@ -61,6 +61,9 @@ public class WordBehavior : MonoBehaviour {
 			letter.velocity = new Vector3 (Random.onUnitSphere.x * 10, 
 				Random.onUnitSphere.y * 10,
 				Random.onUnitSphere.z * 10);
+			letter.AddRelativeTorque (new Vector3(Random.Range(-100,100), 
+				Random.Range(-100,100), 
+				Random.Range(-100,100)));
 			letter.GetComponent<BoxCollider>().enabled = false;
 			fadeout = .01f;
 		}
