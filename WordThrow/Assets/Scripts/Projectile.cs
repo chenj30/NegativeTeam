@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class Projectile : MonoBehaviour {
-
+	public AudioClip impact;
 	public float duration = 5f;
 
+	AudioSource _audioSource;
+
 	void Start () {
+		_audioSource = gameObject.GetComponent<AudioSource>();
 		Destroy(gameObject, duration);
 	}
 	
@@ -15,6 +18,7 @@ public class Projectile : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		Destroy(gameObject);
+		_audioSource.PlayOneShot(impact);
+		Destroy(gameObject, 1f);
 	}
 }
