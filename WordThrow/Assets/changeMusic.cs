@@ -15,12 +15,12 @@ public class changeMusic : MonoBehaviour {
 	void Update () {
 		//[Attach Dan's GenerateLevel Script to Word Manager object before using this]
 		
-		negativity = 1.0f/wordManager.GetComponent<GenerateLevel>().GetNegativity ();
+		negativity = wordManager.GetComponent<GenerateLevel>().GetNegativity ();
 	
 		if (!raise)
-			GetComponent<AudioSource> ().pitch -= negativity / 10000;
+			GetComponent<AudioSource> ().pitch -= negativity / 100000;
 		else
-			GetComponent<AudioSource> ().pitch += negativity / 10000;
+			GetComponent<AudioSource> ().pitch += negativity / 100000;
 		if (GetComponent<AudioSource> ().pitch < .8) {
 			raise = true;
 		}

@@ -39,6 +39,7 @@ public class GenerateLevel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		print ("negativity: " + negativity);
 		if (Input.GetKeyDown (KeyCode.P)) {
 			Debug.Log(PositiveWords[Random.Range(0, PositiveWords.Count - 1)]);
 		}
@@ -53,7 +54,11 @@ public class GenerateLevel : MonoBehaviour {
 		} else {
 			negative_words++;
 		}
-		negativity = 0.5f + 0.05f * negative_words - 0.05f * positive_words;
+		negativity = 0.5f + 0.05f * positive_words - 0.05f * negative_words;
+		if (negativity > 1)
+			negativity = 1;
+		if (negativity < 0)
+			negativity = 0;
 		Debug.Log("Positive words hit: " + positive_words + ", Negative words hit: " + negative_words + ", Hit %: " + ((float)(positive_words + negative_words) / total_words * 100));
 	}
 
